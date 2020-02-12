@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>TCP-чат</title>
+	<link rel="shortcut icon" href="tazhu.ico">
+</head>
+<body>
+	
+	<div class="Chat">
+	
+			<iframe src="Chat.txt"   name="iframe1" scrolling>
+			</iframe>
+			<br>
+			<hr>
+		<form method="post" id="frm1" action="http://localhost/TCP-CHAT//index.php">
+			<div class="userName">
+				<br>
+				<input type="text"  name="login" id="inpt1" value="" placeholder="Введите имя...">
+				<div id="btn" value="OK">OK</div>
+			</div>
+			
+			<div class="mess">
+				Сообщение:<br>
+				<textarea name="message" id = "textarea1" title="Сообщение"> </textarea>
+				<br>
+				<input type="submit" id="submit" value="отправить">
+				<input type="reset" name="reset" value="очистить">
+			</div>
+		</form>
+	</div>
+	<style type="text/css">
+ 		body {
+			background-color: #061836;
+			background-image:url( blue.jpg) ;
+			background-size: 100%;
+			background-repeat: no-repeat;
+			height: 100%;
+		}
+		
+		.Chat{
+			opacity: .6;
+			border:10px solid rgb(107, 65, 204);
+			border-radius: 5px;
+			
+			padding: 10px;
+		}
+		iframe{
+			opacity: .9;
+			background-color: #435b83;
+			color: red;
+			width: 60%;
+			height: 700px;
+		}
+		textarea{
+			color: rgb(238, 237, 237);
+			background-color: #13504b;
+			width: 98%;
+			height: 70px;
+		}
+		#btn{
+			display: inline;
+		background-color: rgb(43, 178, 190);
+		border-radius: 5px;
+		padding: 3px
+		}
+		#btn:hover{
+			border: 2px solid red;
+		}
+		.userName{
+			padding: 3px;
+			width: 220px;
+			border: 2px solid #5f087b;
+		}
+		.mess
+		{
+			display: none;
+				padding: 3px;
+			width: 63%;
+			border: 2px solid #5f087b;
+		}
+	</style>
+
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		var btn1=document.getElementById('btn');
+		var inpt1=document.getElementById('inpt1');
+		
+		$("#btn").click(function(){
+			
+			var userName = inpt1.value;
+			if (userName == 0){
+				alert("Введите имя!");
+				return false;
+			}
+				$(".userName").css({display:"none"});
+				$(".mess").css({display:"block"});
+			
+			}
+			
+		);
+	function refresh() 
+		{ 
+		document.all.iframe1.src = document.all.iframe1.src; 
+		} 
+	window.setInterval("refresh()",1000);
+
+				$('#submit').on('click', function() {
+					
+				    let data = $('#frm1').serialize(),
+				        action = $('#frm1').attr('action')
+					$.post(action, data)
+						 $('#textarea1').val("");
+					return false 
+				});
+				
+</script>
+</body>
+</html>
